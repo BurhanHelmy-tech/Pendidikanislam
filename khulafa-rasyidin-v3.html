@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jejak Khulafa' al-Rasyidin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0B2E2A;
+    --night-2:#0F3A35;
+    --night-3:#14463F;
+    --gold:#D4A94A;
+    --gold-soft:#E8C572;
+    --parchment:#F3EAD6;
+    --parchment-2:#EADFC4;
+    --maroon:#8A3A33;
+    --ink:#22332F;
+    --cream:#F3EAD6;
+    --muted:#9DB5AE;
+    --line:rgba(212,169,74,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    background:var(--night);
+    color:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  /* subtle geometric pattern */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
+    background-image:
+      radial-gradient(circle at 1px 1px, var(--gold) 1px, transparent 0);
+    background-size:34px 34px;
+  }
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 20px}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    text-align:center;padding:64px 0 38px;
+    background:radial-gradient(ellipse at 50% -10%, rgba(212,169,74,.18), transparent 60%);
+  }
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:18px;
+  }
+  .bismillah{
+    font-family:'Amiri',serif;font-size:1.7rem;color:var(--gold-soft);
+    margin-bottom:14px;font-weight:400;
+  }
+  .hero h1{
+    font-family:'Amiri',serif;font-weight:700;
+    font-size:clamp(2.2rem,8vw,3.6rem);line-height:1.1;
+    letter-spacing:.01em;margin-bottom:8px;
+  }
+  .hero h1 .accent{color:var(--gold-soft);display:block}
+  .hero p{
+    max-width:540px;margin:18px auto 0;color:var(--muted);font-size:1.02rem;
+  }
+  .scroll-cue{
+    margin-top:34px;display:inline-flex;flex-direction:column;align-items:center;
+    gap:6px;color:var(--gold);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+    animation:float 2.4s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ---------- INTRO CARD ---------- */
+  .intro{
+    background:linear-gradient(180deg,var(--night-2),var(--night));
+    border:1px solid var(--line);border-radius:20px;
+    padding:30px 26px;margin:10px 0 50px;
+  }
+  .intro h2{
+    font-family:'Amiri',serif;font-size:1.5rem;color:var(--gold-soft);margin-bottom:10px;
+  }
+  .intro p{color:#D9E4E0;font-size:.97rem}
+  .intro .tag{
+    display:inline-block;margin-top:16px;background:rgba(212,169,74,.12);
+    border:1px solid var(--line);color:var(--gold-soft);
+    padding:7px 14px;border-radius:999px;font-size:.8rem;font-weight:600;
+  }
+
+  /* ---------- TRAIL ---------- */
+  .section-head{text-align:center;margin-bottom:8px}
+  .section-head .num{
+    font-size:.72rem;letter-spacing:.3em;color:var(--gold);font-weight:700;text-transform:uppercase;
+  }
+  .section-head h2{
+    font-family:'Amiri',serif;font-size:clamp(1.7rem,5vw,2.3rem);margin-top:4px;
+  }
+  .section-head p{color:var(--muted);font-size:.92rem;margin-top:8px}
+
+  .progress-wrap{
+    max-width:360px;margin:22px auto 40px;text-align:center;
+  }
+  .progress-bar{
+    height:8px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .progress-fill{
+    height:100%;width:0;border-radius:999px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+    transition:width .6s cubic-bezier(.2,.7,.3,1);
+  }
+  .progress-label{font-size:.8rem;color:var(--muted);margin-top:10px}
+  .progress-label b{color:var(--gold-soft)}
+
+  .trail{position:relative;padding:10px 0 20px}
+  .trail::before{
+    content:"";position:absolute;left:31px;top:30px;bottom:30px;width:2px;
+    background:linear-gradient(180deg,transparent,var(--line) 8%,var(--line) 92%,transparent);
+  }
+  .station{
+    position:relative;display:flex;gap:20px;align-items:flex-start;
+    padding:12px 0;cursor:pointer;
+  }
+  .node{
+    flex:0 0 64px;height:64px;border-radius:50%;display:grid;place-items:center;
+    background:var(--night-2);border:2px solid var(--line);position:relative;z-index:2;
+    font-family:'Amiri',serif;font-size:1.5rem;color:var(--muted);
+    transition:all .4s ease;
+  }
+  .node .order{
+    position:absolute;top:-6px;right:-6px;width:24px;height:24px;border-radius:50%;
+    background:var(--night-3);border:1px solid var(--line);color:var(--gold-soft);
+    font-family:'Plus Jakarta Sans';font-size:.72rem;font-weight:700;display:grid;place-items:center;
+  }
+  .station.done .node{
+    background:radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
+    border-color:var(--gold-soft);color:var(--night);
+    box-shadow:0 0 0 6px rgba(212,169,74,.14),0 8px 24px rgba(212,169,74,.3);
+  }
+  .station-body{
+    flex:1;background:linear-gradient(180deg,var(--night-2),var(--night));
+    border:1px solid var(--line);border-radius:16px;padding:16px 18px;
+    transition:transform .3s ease,border-color .3s ease;
+  }
+  .station:hover .station-body{transform:translateX(4px);border-color:rgba(212,169,74,.5)}
+  .station-body h3{font-family:'Amiri',serif;font-size:1.25rem;line-height:1.2}
+  .station-body .gelaran{color:var(--gold-soft);font-size:.85rem;font-weight:600;margin-top:2px}
+  .station-body .meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:.8rem;color:var(--muted)}
+  .station-body .open-cue{
+    margin-top:12px;font-size:.78rem;color:var(--gold);font-weight:600;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .station.done .open-cue::before{content:"✓ ";color:var(--gold-soft)}
+
+  /* ---------- MODAL ---------- */
+  .overlay{
+    position:fixed;inset:0;z-index:50;background:rgba(6,22,20,.78);
+    backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;
+    padding:24px 16px;overflow-y:auto;
+  }
+  .overlay.show{display:flex;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .modal{
+    background:var(--parchment);color:var(--ink);max-width:560px;width:100%;
+    border-radius:22px;overflow:hidden;margin:auto;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);animation:pop .35s cubic-bezier(.2,.8,.3,1);
+  }
+  @keyframes pop{from{transform:translateY(24px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+  .modal-top{
+    background:linear-gradient(135deg,var(--night-2),var(--night-3));color:var(--cream);
+    padding:26px 26px 22px;position:relative;
+  }
+  .modal-top .order-pill{
+    font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:700;
+  }
+  .modal-top h3{font-family:'Amiri',serif;font-size:2rem;line-height:1.1;margin-top:6px}
+  .modal-top .gel{color:var(--gold-soft);font-weight:600;margin-top:4px;font-size:.95rem}
+  .modal-top .tempoh{
+    display:inline-block;margin-top:14px;background:rgba(212,169,74,.15);
+    border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-size:.8rem;color:var(--gold-soft);
+  }
+  .close{
+    position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;
+    border:none;background:rgba(255,255,255,.12);color:var(--cream);font-size:1.2rem;cursor:pointer;
+    display:grid;place-items:center;transition:background .2s;
+  }
+  .close:hover{background:rgba(255,255,255,.25)}
+  .modal-body{padding:24px 26px 28px}
+  .block{margin-bottom:20px}
+  .block:last-child{margin-bottom:0}
+  .block-label{
+    display:flex;align-items:center;gap:8px;font-size:.74rem;letter-spacing:.16em;
+    text-transform:uppercase;font-weight:700;color:var(--maroon);margin-bottom:8px;
+  }
+  .block-label .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+  .block p{font-size:.95rem;color:#3A4A45}
+  .block ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .block li{
+    position:relative;padding-left:24px;font-size:.95rem;color:#3A4A45;
+  }
+  .block li::before{
+    content:"";position:absolute;left:4px;top:9px;width:8px;height:8px;
+    background:var(--gold);transform:rotate(45deg);border-radius:1px;
+  }
+  .iktibar{
+    background:#FBF5E6;border:1px dashed var(--maroon);border-radius:14px;padding:16px 18px;
+  }
+  .iktibar .block-label{color:var(--maroon);margin-bottom:6px}
+  .iktibar p{color:var(--maroon);font-weight:500;font-style:italic}
+  .modal-cta{
+    margin-top:24px;width:100%;border:none;cursor:pointer;
+    background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:var(--night);
+    font-family:'Plus Jakarta Sans';font-weight:700;font-size:.95rem;
+    padding:14px;border-radius:12px;transition:transform .15s,box-shadow .2s;
+  }
+  .modal-cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,169,74,.35)}
+
+  /* ---------- QUIZ ---------- */
+  .quiz-section{margin:64px 0 40px}
+  .quiz-card{
+    background:linear-gradient(180deg,var(--night-2),var(--night));
+    border:1px solid var(--line);border-radius:22px;padding:30px 24px;
+  }
+  .quiz-locked{text-align:center;color:var(--muted)}
+  .quiz-locked .lock{font-size:2.4rem;margin-bottom:12px;filter:grayscale(.2)}
+  .qcount{font-size:.8rem;color:var(--gold);font-weight:700;letter-spacing:.1em;margin-bottom:14px}
+  .question{font-family:'Amiri',serif;font-size:1.35rem;line-height:1.35;margin-bottom:20px}
+  .options{display:flex;flex-direction:column;gap:12px}
+  .opt{
+    text-align:left;background:rgba(255,255,255,.04);border:1.5px solid var(--line);
+    color:var(--cream);padding:14px 16px;border-radius:13px;cursor:pointer;font-size:.95rem;
+    font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:12px;
+  }
+  .opt .key{
+    flex:0 0 26px;height:26px;border-radius:7px;background:rgba(212,169,74,.15);
+    color:var(--gold-soft);font-weight:700;font-size:.85rem;display:grid;place-items:center;
+  }
+  .opt:hover:not(:disabled){border-color:var(--gold-soft);background:rgba(212,169,74,.08)}
+  .opt.correct{background:rgba(86,171,108,.18);border-color:#6FCB86;color:#CFF3D8}
+  .opt.correct .key{background:#6FCB86;color:#0B2E2A}
+  .opt.wrong{background:rgba(176,69,62,.18);border-color:#D77A72;color:#F6D5D2}
+  .opt.wrong .key{background:#D77A72;color:#2E0B0B}
+  .opt:disabled{cursor:default}
+  .feedback{margin-top:16px;font-size:.9rem;min-height:24px;font-weight:600}
+  .feedback.ok{color:#7FD89A}
+  .feedback.no{color:#E59A93}
+  .quiz-next{
+    margin-top:20px;width:100%;border:none;cursor:pointer;
+    background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:var(--night);
+    font-weight:700;padding:14px;border-radius:12px;font-family:inherit;font-size:.95rem;
+    transition:transform .15s;
+  }
+  .quiz-next:hover{transform:translateY(-2px)}
+  .quiz-next:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+  /* result */
+  .result{text-align:center}
+  .result .score-ring{
+    width:130px;height:130px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;
+    background:conic-gradient(var(--gold) var(--deg,0deg), rgba(255,255,255,.08) 0);
+    transition:--deg 1s;
+  }
+  .result .score-inner{
+    width:104px;height:104px;border-radius:50%;background:var(--night-2);display:grid;place-items:center;
+    flex-direction:column;
+  }
+  .result .score-num{font-family:'Amiri',serif;font-size:2.2rem;color:var(--gold-soft);line-height:1}
+  .result .score-of{font-size:.75rem;color:var(--muted)}
+  .result h3{font-family:'Amiri',serif;font-size:1.7rem;margin-bottom:8px}
+  .result p{color:var(--muted);margin-bottom:22px}
+  .result .retry{
+    border:1.5px solid var(--gold);background:transparent;color:var(--gold-soft);
+    padding:12px 26px;border-radius:12px;cursor:pointer;font-family:inherit;font-weight:700;transition:all .2s;
+  }
+  .result .retry:hover{background:rgba(212,169,74,.12)}
+
+  /* ---------- VALUES ---------- */
+  .values{margin:50px 0 30px}
+  .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:24px}
+  .value-card{
+    background:linear-gradient(180deg,var(--night-2),var(--night));border:1px solid var(--line);
+    border-radius:16px;padding:18px;transition:transform .25s,border-color .25s;
+    min-width:0;overflow:hidden;
+  }
+  .value-card:hover{transform:translateY(-4px);border-color:rgba(212,169,74,.5)}
+  .value-card .vi{font-size:1.6rem;margin-bottom:8px}
+  .value-card h4{font-family:'Amiri',serif;font-size:clamp(.95rem,4.2vw,1.15rem);color:var(--gold-soft);margin-bottom:4px;overflow-wrap:break-word;word-break:break-word;hyphens:auto;line-height:1.2}
+  .value-card p{font-size:.84rem;color:var(--muted)}
+
+  footer{text-align:center;padding:40px 0 60px;color:var(--muted);font-size:.82rem}
+  footer .div{width:60px;height:2px;background:var(--line);margin:0 auto 18px}
+  footer .ar{font-family:'Amiri',serif;font-size:1.2rem;color:var(--gold-soft);margin-bottom:8px}
+
+  @media(max-width:520px){
+    .trail::before{left:27px}
+    .node{flex-basis:56px;height:56px;font-size:1.3rem}
+    .station{gap:14px}
+    .modal-top h3{font-size:1.6rem}
+  }
+  /* accessibility */
+  :focus-visible{outline:3px solid var(--gold-soft);outline-offset:3px;border-radius:6px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Pendidikan Islam · Tingkatan 1 · Sirah</div>
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1>Jejak <span class="accent">Khulafa' al-Rasyidin</span></h1>
+    <p>Susuri perjalanan empat pemimpin agung yang meneruskan perjuangan Rasulullah ﷺ. Terokai setiap khalifah, kemudian buktikan kefahaman anda dalam kuiz.</p>
+    <a href="#trail" class="scroll-cue">Mula <span style="font-size:1.1rem">↓</span></a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <h2>Siapakah mereka?</h2>
+    <p><b>Khulafa' al-Rasyidin</b> bermaksud "para pemimpin yang mendapat petunjuk." Mereka ialah empat sahabat terdekat Nabi Muhammad ﷺ yang dilantik memimpin umat Islam selepas kewafatan Baginda. Mereka terkenal dengan keimanan, keadilan, keberanian dan pengorbanan yang luar biasa dalam mempertahankan serta menyebarkan Islam.</p>
+    <span class="tag">⏳ 11 – 40 Hijrah (632 – 661 Masihi)</span>
+  </section>
+
+  <section id="trail">
+    <div class="section-head">
+      <div class="num">Bahagian 1</div>
+      <h2>Empat Khalifah</h2>
+      <p>Ketuk setiap perhentian untuk membuka kisah perjuangannya.</p>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="pfill"></div></div>
+      <div class="progress-label"><b id="pcount">0</b> daripada 4 khalifah diterokai</div>
+    </div>
+
+    <div class="trail" id="trailList"></div>
+  </section>
+
+  <section class="quiz-section">
+    <div class="section-head">
+      <div class="num">Bahagian 2</div>
+      <h2>Uji Kefahaman</h2>
+      <p>Jawab 10 soalan untuk menguji apa yang telah anda pelajari.</p>
+    </div>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-locked" id="quizLocked">
+        <div class="lock">🔒</div>
+        <p>Terokai keempat-empat khalifah dahulu untuk membuka kuiz ini.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="section-head">
+      <div class="num">Iktibar</div>
+      <h2>Nilai untuk Dicontohi</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card"><div class="vi">⚖️</div><h4>Keadilan</h4><p>Memimpin dengan saksama tanpa pilih kasih.</p></div>
+      <div class="value-card"><div class="vi">🛡️</div><h4>Ketegasan</h4><p>Berani mempertahankan kebenaran dan akidah.</p></div>
+      <div class="value-card"><div class="vi">🤲</div><h4>Pengorbanan</h4><p>Sanggup mengorbankan harta dan diri demi Islam.</p></div>
+      <div class="value-card"><div class="vi">📖</div><h4>Ilmu</h4><p>Sentiasa menuntut dan menyebarkan ilmu.</p></div>
+      <div class="value-card"><div class="vi">💛</div><h4>Kedermawanan</h4><p>Murah hati membantu umat yang memerlukan.</p></div>
+      <div class="value-card"><div class="vi">🕌</div><h4>Perpaduan</h4><p>Menyatukan ummah demi kekuatan bersama.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="div"></div>
+  <div class="ar">رَضِيَ اللَّهُ عَنْهُمْ</div>
+  <p>Semoga Allah meredai mereka semua.</p>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+const caliphs = [
+  {
+    order:"Khalifah Pertama",
+    name:"Abu Bakar al-Siddiq",
+    init:"أ",
+    gelaran:"As-Siddiq — Yang Membenarkan",
+    tempoh:"11 – 13 Hijrah (632 – 634 M)",
+    peribadi:"Sahabat paling rapat dengan Rasulullah ﷺ dan lelaki dewasa pertama memeluk Islam. Beliau digelar As-Siddiq kerana sentiasa membenarkan setiap berita daripada Baginda, termasuk peristiwa Israk Mikraj.",
+    sumbangan:[
+      "Menentang golongan murtad, nabi palsu dan yang enggan membayar zakat dalam Perang Riddah.",
+      "Memulakan usaha mengumpulkan ayat-ayat al-Quran setelah ramai penghafaz gugur syahid.",
+      "Meneruskan penyebaran Islam ke wilayah Parsi dan Rom (Byzantine)."
+    ],
+    iktibar:"Berpegang teguh pada kebenaran dan setia mempertahankan akidah, walau dalam keadaan sukar."
+  },
+  {
+    order:"Khalifah Kedua",
+    name:"Umar al-Khattab",
+    init:"ع",
+    gelaran:"Al-Faruq — Pembeza Hak dan Batil",
+    tempoh:"13 – 23 Hijrah (634 – 644 M)",
+    peribadi:"Pemimpin yang tegas namun sangat adil dan merendah diri. Beliau terkenal mengambil berat tentang rakyat sehingga sanggup meronda pada waktu malam untuk memastikan keadaan mereka.",
+    sumbangan:[
+      "Meluaskan empayar Islam — pembukaan Baitulmaqdis, Mesir, Parsi dan Syam.",
+      "Memperkenalkan kalendar Hijrah yang digunakan umat Islam sehingga kini.",
+      "Menubuhkan Baitulmal (perbendaharaan negara) untuk kebajikan rakyat.",
+      "Membentuk sistem pentadbiran wilayah dan kehakiman (diwan)."
+    ],
+    iktibar:"Pemimpin yang adil bertanggungjawab penuh terhadap kebajikan rakyatnya."
+  },
+  {
+    order:"Khalifah Ketiga",
+    name:"Uthman bin Affan",
+    init:"ع",
+    gelaran:"Dhun-Nurain — Pemilik Dua Cahaya",
+    tempoh:"23 – 35 Hijrah (644 – 656 M)",
+    peribadi:"Seorang hartawan yang sangat pemurah, lemah lembut dan pemalu. Beliau digelar Dhun-Nurain kerana berkahwin dengan dua orang puteri Rasulullah ﷺ.",
+    sumbangan:[
+      "Membukukan al-Quran dalam satu mushaf (Mushaf Uthmani) untuk menyatukan bacaan umat.",
+      "Membina angkatan tentera laut Islam yang pertama.",
+      "Meluaskan Masjidil Haram dan Masjid Nabawi.",
+      "Mewakafkan harta — membeli Telaga Raumah untuk kegunaan umat Islam."
+    ],
+    iktibar:"Semangat berkorban harta dan mengutamakan perpaduan ummah."
+  },
+  {
+    order:"Khalifah Keempat",
+    name:"Ali bin Abi Talib",
+    init:"ع",
+    gelaran:"Pintu Ilmu · Karramallahu Wajhah",
+    tempoh:"35 – 40 Hijrah (656 – 661 M)",
+    peribadi:"Kanak-kanak pertama memeluk Islam, terkenal dengan keberanian, kebijaksanaan dan ilmu yang tinggi. Beliau dikenali sebagai 'pintu ilmu' kerana kedalaman ilmunya.",
+    sumbangan:[
+      "Sanggup tidur di tempat tidur Rasulullah ﷺ semasa peristiwa Hijrah demi melindungi Baginda.",
+      "Tokoh ilmuwan yang banyak menyumbang dalam bidang ilmu dan kehakiman.",
+      "Mengukuhkan pentadbiran negara dalam keadaan yang penuh cabaran."
+    ],
+    iktibar:"Kepentingan menuntut ilmu serta keberanian mempertahankan kebenaran."
+  }
+];
+
+const quiz = [
+  {q:"Siapakah khalifah pertama selepas kewafatan Rasulullah ﷺ?",
+   o:["Umar al-Khattab","Abu Bakar al-Siddiq","Uthman bin Affan","Ali bin Abi Talib"],a:1,
+   why:"Abu Bakar al-Siddiq ialah khalifah pertama dan sahabat paling rapat dengan Baginda."},
+  {q:"Apakah gelaran bagi Umar al-Khattab?",
+   o:["As-Siddiq","Dhun-Nurain","Al-Faruq","Pintu Ilmu"],a:2,
+   why:"Al-Faruq bermaksud pembeza antara yang hak dan yang batil."},
+  {q:"Khalifah yang membukukan al-Quran dalam satu mushaf (Mushaf Uthmani) ialah?",
+   o:["Abu Bakar","Uthman bin Affan","Ali bin Abi Talib","Umar al-Khattab"],a:1,
+   why:"Uthman bin Affan menyeragamkan bacaan al-Quran melalui Mushaf Uthmani."},
+  {q:"Kalendar Hijrah diperkenalkan pada zaman khalifah?",
+   o:["Umar al-Khattab","Abu Bakar","Uthman bin Affan","Ali bin Abi Talib"],a:0,
+   why:"Umar al-Khattab memperkenalkan kalendar Hijrah."},
+  {q:"Siapakah khalifah yang digelar 'Pintu Ilmu'?",
+   o:["Abu Bakar","Umar al-Khattab","Uthman bin Affan","Ali bin Abi Talib"],a:3,
+   why:"Ali bin Abi Talib terkenal dengan ilmunya yang mendalam."},
+  {q:"Perang Riddah menentang golongan murtad berlaku pada zaman?",
+   o:["Abu Bakar al-Siddiq","Umar al-Khattab","Uthman bin Affan","Ali bin Abi Talib"],a:0,
+   why:"Abu Bakar al-Siddiq menangani golongan murtad dalam Perang Riddah."},
+  {q:"Apakah gelaran bagi Uthman bin Affan?",
+   o:["As-Siddiq","Al-Faruq","Dhun-Nurain","Pintu Ilmu"],a:2,
+   why:"Dhun-Nurain bermaksud 'pemilik dua cahaya' kerana beliau berkahwin dengan dua puteri Rasulullah ﷺ."},
+  {q:"Siapakah yang sanggup tidur di tempat tidur Rasulullah ﷺ semasa peristiwa Hijrah?",
+   o:["Abu Bakar al-Siddiq","Umar al-Khattab","Uthman bin Affan","Ali bin Abi Talib"],a:3,
+   why:"Ali bin Abi Talib menunjukkan keberanian luar biasa demi melindungi Baginda."},
+  {q:"Telaga Raumah diwakafkan untuk kegunaan umat Islam oleh khalifah?",
+   o:["Abu Bakar al-Siddiq","Umar al-Khattab","Uthman bin Affan","Ali bin Abi Talib"],a:2,
+   why:"Uthman bin Affan membeli Telaga Raumah dengan hartanya sendiri untuk umat Islam."},
+  {q:"Baitulmal (perbendaharaan negara) ditubuhkan pada zaman khalifah?",
+   o:["Abu Bakar al-Siddiq","Umar al-Khattab","Uthman bin Affan","Ali bin Abi Talib"],a:1,
+   why:"Umar al-Khattab menubuhkan Baitulmal untuk menguruskan kebajikan rakyat."}
+];
+
+/* ---- build trail ---- */
+const explored = new Set();
+const trailList = document.getElementById("trailList");
+caliphs.forEach((c,i)=>{
+  const el=document.createElement("div");
+  el.className="station";el.tabIndex=0;el.setAttribute("role","button");
+  el.setAttribute("aria-label","Buka kisah "+c.name);
+  el.innerHTML=`
+    <div class="node">${c.init}<span class="order">${i+1}</span></div>
+    <div class="station-body">
+      <h3>${c.name}</h3>
+      <div class="gelaran">${c.gelaran}</div>
+      <div class="meta"><span>👑 ${c.order}</span><span>⏳ ${c.tempoh.split('(')[0].trim()}</span></div>
+      <div class="open-cue">Ketuk untuk buka →</div>
+    </div>`;
+  el.addEventListener("click",()=>openModal(i));
+  el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openModal(i);}});
+  trailList.appendChild(el);
+});
+
+/* ---- modal ---- */
+const overlay=document.getElementById("overlay");
+const modal=document.getElementById("modal");
+function openModal(i){
+  const c=caliphs[i];
+  modal.innerHTML=`
+    <div class="modal-top">
+      <button class="close" aria-label="Tutup" onclick="closeModal()">✕</button>
+      <div class="order-pill">${c.order}</div>
+      <h3>${c.name}</h3>
+      <div class="gel">${c.gelaran}</div>
+      <span class="tempoh">⏳ ${c.tempoh}</span>
+    </div>
+    <div class="modal-body">
+      <div class="block">
+        <div class="block-label"><span class="dot"></span>Keperibadian</div>
+        <p>${c.peribadi}</p>
+      </div>
+      <div class="block">
+        <div class="block-label"><span class="dot"></span>Keunggulan Perjuangan</div>
+        <ul>${c.sumbangan.map(s=>`<li>${s}</li>`).join("")}</ul>
+      </div>
+      <div class="iktibar">
+        <div class="block-label">✦ Iktibar</div>
+        <p>${c.iktibar}</p>
+      </div>
+      <button class="modal-cta" onclick="closeModal()">Selesai · Tandakan diterokai ✓</button>
+    </div>`;
+  overlay.classList.add("show");
+  document.body.style.overflow="hidden";
+  if(!explored.has(i)){
+    explored.add(i);
+    trailList.children[i].classList.add("done");
+    updateProgress();
+  }
+}
+function closeModal(){overlay.classList.remove("show");document.body.style.overflow="";}
+overlay.addEventListener("click",e=>{if(e.target===overlay)closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+
+function updateProgress(){
+  const n=explored.size;
+  document.getElementById("pfill").style.width=(n/4*100)+"%";
+  document.getElementById("pcount").textContent=n;
+  if(n===4)unlockQuiz();
+}
+
+/* ---- quiz ---- */
+let qi=0,score=0,answered=false;
+function unlockQuiz(){
+  const card=document.getElementById("quizCard");
+  if(card.dataset.ready)return;
+  card.dataset.ready="1";
+  qi=0;score=0;
+  renderQuestion();
+}
+function renderQuestion(){
+  answered=false;
+  const item=quiz[qi];
+  const card=document.getElementById("quizCard");
+  card.innerHTML=`
+    <div class="qcount">SOALAN ${qi+1} / ${quiz.length}</div>
+    <div class="question">${item.q}</div>
+    <div class="options" id="opts"></div>
+    <div class="feedback" id="fb"></div>
+    <button class="quiz-next" id="next" disabled>${qi===quiz.length-1?"Lihat Keputusan":"Soalan Seterusnya →"}</button>`;
+  const opts=document.getElementById("opts");
+  const keys=["A","B","C","D"];
+  item.o.forEach((txt,idx)=>{
+    const b=document.createElement("button");
+    b.className="opt";b.innerHTML=`<span class="key">${keys[idx]}</span><span>${txt}</span>`;
+    b.addEventListener("click",()=>pick(idx,b));
+    opts.appendChild(b);
+  });
+  document.getElementById("next").addEventListener("click",nextQ);
+}
+function pick(idx,btn){
+  if(answered)return;answered=true;
+  const item=quiz[qi];
+  const all=document.querySelectorAll(".opt");
+  all.forEach(b=>b.disabled=true);
+  const fb=document.getElementById("fb");
+  if(idx===item.a){
+    btn.classList.add("correct");score++;
+    fb.className="feedback ok";fb.textContent="✓ Betul! "+item.why;
+  }else{
+    btn.classList.add("wrong");
+    all[item.a].classList.add("correct");
+    fb.className="feedback no";fb.textContent="✗ Kurang tepat. "+item.why;
+  }
+  document.getElementById("next").disabled=false;
+}
+function nextQ(){
+  qi++;
+  if(qi<quiz.length)renderQuestion();else showResult();
+}
+function showResult(){
+  const pct=Math.round(score/quiz.length*100);
+  let title,msg;
+  if(pct===100){title="Cemerlang! 🌟";msg="Sempurna! Anda benar-benar memahami perjuangan Khulafa' al-Rasyidin.";}
+  else if(pct>=66){title="Bagus! 👏";msg="Kefahaman anda sangat baik. Ulang kaji sedikit lagi untuk markah penuh.";}
+  else if(pct>=50){title="Usaha Baik 💪";msg="Anda di landasan yang betul. Terokai semula kisah para khalifah.";}
+  else{title="Cuba Lagi 📖";msg="Jangan putus asa! Baca semula setiap kisah dan cuba sekali lagi.";}
+  const card=document.getElementById("quizCard");
+  card.innerHTML=`
+    <div class="result">
+      <div class="score-ring" id="ring">
+        <div class="score-inner">
+          <div class="score-num">${score}/${quiz.length}</div>
+          <div class="score-of">${pct}%</div>
+        </div>
+      </div>
+      <h3>${title}</h3>
+      <p>${msg}</p>
+      <button class="retry" onclick="retryQuiz()">↻ Cuba Semula</button>
+    </div>`;
+  requestAnimationFrame(()=>{
+    document.getElementById("ring").style.setProperty("--deg",(pct*3.6)+"deg");
+    // fallback animation for conic
+    let cur=0;const target=pct*3.6;const ring=document.getElementById("ring");
+    const t=setInterval(()=>{cur+=target/30;if(cur>=target){cur=target;clearInterval(t);}
+      ring.style.background=`conic-gradient(var(--gold) ${cur}deg, rgba(255,255,255,.08) 0)`;},16);
+  });
+}
+function retryQuiz(){qi=0;score=0;renderQuestion();}
+</script>
+</body>
+</html>
